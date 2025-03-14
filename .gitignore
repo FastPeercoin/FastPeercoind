@@ -130,3 +130,6 @@ db4/
 
 #ignore in top level directory only
 /debian
+
+src/config/
+src/secp256k1/
