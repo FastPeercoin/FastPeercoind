@@ -262,15 +262,6 @@ bool isObscured(QWidget *w)
         && checkPoint(QPoint(w->width() / 2, w->height() / 2), w));
 }
 
-void openDebugLogfile()
-{
-    boost::filesystem::path pathDebug = GetDataDir() / "debug.log";
-
-    /* Open debug.log with the associated application */
-    if (boost::filesystem::exists(pathDebug))
-        QDesktopServices::openUrl(QUrl::fromLocalFile(QString::fromStdString(pathDebug.string())));
-}
-
 ToolTipToRichTextFilter::ToolTipToRichTextFilter(int size_threshold, QObject *parent) :
     QObject(parent), size_threshold(size_threshold)
 {
