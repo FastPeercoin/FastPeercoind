@@ -75,8 +75,6 @@ private slots:
     void onCopyLabelAction();
     /** Edit currently selected address entry (no button) */
     void onEditAction();
-    /** Export button clicked */
-    void on_exportButton_clicked();
 
     /** Set button states based on selected tab and selection */
     void selectionChanged();

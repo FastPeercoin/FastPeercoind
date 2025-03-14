@@ -5,7 +5,6 @@
 #include "walletmodel.h"
 #include "guiconstants.h"
 #include "guiutil.h"
-#include "csvmodelwriter.h"
 
 #include <QComboBox>
 #include <QHBoxLayout>
@@ -169,34 +168,6 @@ void MintingView::chooseMintingInterval(int idx)
     }
     model->getMintingTableModel()->setMintingInterval(interval);
     mintingProxyModel->invalidate();
-}
-
-void MintingView::exportClicked()
-{
-    // CSV is currently the only supported format
-    QString filename = GUIUtil::getSaveFileName(
-            this,
-            tr("Export Minting Data"), QString(),
-            tr("Comma separated file (*.csv)"));
-
-    if (filename.isNull()) return;
-
-    CSVModelWriter writer(filename);
-
-    // name, column, role
-    writer.setModel(mintingProxyModel);
-    writer.addColumn(tr("Address"), MintingTableModel::Address);
-    writer.addColumn(tr("Transaction"), MintingTableModel::TxHash);
-    writer.addColumn(tr("Age"), MintingTableModel::Age);
-    writer.addColumn(tr("CoinDay"), MintingTableModel::CoinDay);
-    writer.addColumn(tr("Balance"), MintingTableModel::Balance);
-    writer.addColumn(tr("MintingProbability"), MintingTableModel::MintProbability);
-
-    if(!writer.write())
-    {
-        QMessageBox::critical(this, tr("Error exporting"), tr("Could not write to file %1.").arg(filename),
-                              QMessageBox::Abort, QMessageBox::Abort);
-    }
 }
 
 void MintingView::contextualMenu(const QPoint &point)

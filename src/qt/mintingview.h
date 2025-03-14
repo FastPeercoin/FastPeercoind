@@ -43,7 +43,6 @@ private slots:
 signals:
 
 public slots:
-    void exportClicked();
     void chooseMintingInterval(int idx);
 };
 

@@ -9,7 +9,6 @@
 #include "optionsmodel.h"
 #include "bitcoingui.h"
 #include "editaddressdialog.h"
-#include "csvmodelwriter.h"
 #include "guiutil.h"
 
 #ifdef USE_QRCODE
@@ -31,15 +30,6 @@ AddressBookPage::AddressBookPage(Mode mode, Tabs tab, QWidget *parent) :
 {
     ui->setupUi(this);
 
-#ifdef Q_OS_MAC // Icons on push buttons are very uncommon on Mac
-    ui->newAddress->setIcon(QIcon());
-    ui->copyAddress->setIcon(QIcon());
-    ui->deleteAddress->setIcon(QIcon());
-    ui->verifyMessage->setIcon(QIcon());
-    ui->signMessage->setIcon(QIcon());
-    ui->exportButton->setIcon(QIcon());
-#endif
-
 #ifndef USE_QRCODE
     ui->showQRCode->setVisible(false);
 #endif
@@ -50,7 +40,6 @@ AddressBookPage::AddressBookPage(Mode mode, Tabs tab, QWidget *parent) :
         connect(ui->tableView, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(accept()));
         ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
         ui->tableView->setFocus();
-        ui->exportButton->hide();
         break;
     case ForEditing:
         ui->buttonBox->setVisible(false);
@@ -333,30 +322,6 @@ void AddressBookPage::done(int retval)
     }
 
     QDialog::done(retval);
-}
-
-void AddressBookPage::on_exportButton_clicked()
-{
-    // CSV is currently the only supported format
-    QString filename = GUIUtil::getSaveFileName(
-            this,
-            tr("Export Address Book Data"), QString(),
-            tr("Comma separated file (*.csv)"));
-
-    if (filename.isNull()) return;
-
-    CSVModelWriter writer(filename);
-
-    // name, column, role
-    writer.setModel(proxyModel);
-    writer.addColumn("Label", AddressTableModel::Label, Qt::EditRole);
-    writer.addColumn("Address", AddressTableModel::Address, Qt::EditRole);
-
-    if(!writer.write())
-    {
-        QMessageBox::critical(this, tr("Error exporting"), tr("Could not write to file %1.").arg(filename),
-                              QMessageBox::Abort, QMessageBox::Abort);
-    }
 }
 
 void AddressBookPage::on_showQRCode_clicked()
