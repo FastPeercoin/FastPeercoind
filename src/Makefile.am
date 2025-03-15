@@ -211,10 +211,6 @@ LIBPEERCOIN_COMMON=libpeercoin_common.a
 LIBPEERCOIN_CLI=libpeercoin_cli.a
 LIBPEERCOINQT=qt/libpeercoinqt.a
 
-if ENABLE_TESTS
-include Makefile.test.include
-endif
-
 if ENABLE_QT
 include Makefile.qt.include
 endif
