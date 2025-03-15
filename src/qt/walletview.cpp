@@ -18,7 +18,6 @@
 #include "overviewpage.h"
 #include "askpassphrasedialog.h"
 #include "ui_interface.h"
-#include "mintingview.h"
 #include "wallet.h"
 
 #include <QHBoxLayout>
@@ -45,12 +44,6 @@ WalletView::WalletView(QWidget *parent, BitcoinGUI *_gui):
     vbox->addLayout(hbox_buttons);
     transactionsPage->setLayout(vbox);
 
-    mintingPage = new QWidget(this);
-    QVBoxLayout *vboxMinting = new QVBoxLayout();
-    mintingView = new MintingView(this);
-    vboxMinting->addWidget(mintingView);
-    mintingPage->setLayout(vboxMinting);
-
     addressBookPage = new AddressBookPage(AddressBookPage::ForEditing, AddressBookPage::SendingTab);
 
     receiveCoinsPage = new AddressBookPage(AddressBookPage::ForEditing, AddressBookPage::ReceivingTab);
@@ -62,7 +55,6 @@ WalletView::WalletView(QWidget *parent, BitcoinGUI *_gui):
 
     addWidget(overviewPage);
     addWidget(transactionsPage);
-    addWidget(mintingPage);
     addWidget(multisigDialog);
     addWidget(addressBookPage);
     addWidget(receiveCoinsPage);
@@ -115,7 +107,6 @@ void WalletView::setWalletModel(WalletModel *walletModel)
 
         // Put transaction list in tabs
         transactionView->setModel(walletModel);
-        mintingView->setModel(walletModel);
         multisigDialog->setModel(walletModel);
         overviewPage->setWalletModel(walletModel);
         addressBookPage->setModel(walletModel->getAddressTableModel());
@@ -161,12 +152,6 @@ void WalletView::gotoHistoryPage()
 {
     gui->getHistoryAction()->setChecked(true);
     setCurrentWidget(transactionsPage);
-}
-
-void WalletView::gotoMintingPage()
-{
-    gui->getMintingAction()->setChecked(true);
-    setCurrentWidget(mintingPage);
 }
 
 void WalletView::gotoMultisigPage()

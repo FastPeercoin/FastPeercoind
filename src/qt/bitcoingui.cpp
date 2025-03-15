@@ -198,13 +198,6 @@ void BitcoinGUI::createActions()
     historyAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_4));
     tabGroup->addAction(historyAction);
 
-    mintingAction = new QAction(QIcon(":/icons/history"), tr("&Minting"), this);
-    mintingAction->setStatusTip(tr("Show your minting capacity"));
-    mintingAction->setToolTip(mintingAction->statusTip());
-    mintingAction->setCheckable(true);
-    mintingAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_5));
-    tabGroup->addAction(mintingAction);
-
     addressBookAction = new QAction(QIcon(":/icons/address-book"), tr("&Addresses"), this);
     addressBookAction->setStatusTip(tr("Edit the list of stored addresses and labels"));
     addressBookAction->setToolTip(addressBookAction->statusTip());
@@ -227,8 +220,6 @@ void BitcoinGUI::createActions()
     connect(receiveCoinsAction, SIGNAL(triggered()), this, SLOT(gotoReceiveCoinsPage()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
-    connect(mintingAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
-    connect(mintingAction, SIGNAL(triggered()), this, SLOT(gotoMintingPage()));
     connect(addressBookAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(addressBookAction, SIGNAL(triggered()), this, SLOT(gotoAddressBookPage()));
     connect(multisigAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
@@ -337,9 +328,6 @@ void BitcoinGUI::createToolBars()
     toolbar->addAction(sendCoinsAction);
     toolbar->addAction(receiveCoinsAction);
     toolbar->addAction(historyAction);
-#ifndef DISABLE_MINING
-    toolbar->addAction(mintingAction);
-#endif // DISABLE_MINING
     toolbar->addAction(addressBookAction);
     toolbar->addAction(multisigAction);
 }
@@ -519,11 +507,6 @@ void BitcoinGUI::gotoHistoryPage()
 void BitcoinGUI::gotoMultisigPage()
 {
     if (walletFrame) walletFrame->gotoMultisigPage();
-}
-
-void BitcoinGUI::gotoMintingPage()
-{
-    if (walletFrame) walletFrame->gotoMintingPage();
 }
 
 void BitcoinGUI::gotoAddressBookPage()

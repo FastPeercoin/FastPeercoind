@@ -94,9 +94,6 @@ QT_MOC_CPP = \
   qt/moc_multisigaddressentry.cpp \
   qt/moc_multisiginputentry.cpp \
   qt/moc_multisigdialog.cpp \
-  qt/moc_mintingview.cpp \
-  qt/moc_mintingtablemodel.cpp \
-  qt/moc_mintingfilterproxy.cpp \
   qt/moc_monitoreddatamapper.cpp \
   qt/moc_notificator.cpp \
   qt/moc_optionsdialog.cpp \
@@ -151,9 +148,6 @@ PEERCOIN_QT_H = \
   qt/guiutil.h \
   qt/macdockiconhandler.h \
   qt/macnotificationhandler.h \
-  qt/mintingview.h \
-  qt/mintingtablemodel.h \
-  qt/mintingfilterproxy.h \
   qt/multisigaddressentry.h \
   qt/multisiginputentry.h \
   qt/multisigdialog.h \
@@ -254,9 +248,6 @@ PEERCOIN_QT_CPP += \
   qt/editaddressdialog.cpp \
   qt/overviewpage.cpp \
   qt/paymentserver.cpp \
-  qt/mintingview.cpp \
-  qt/mintingtablemodel.cpp \
-  qt/mintingfilterproxy.cpp \
   qt/multisigaddressentry.cpp \
   qt/multisiginputentry.cpp \
   qt/multisigdialog.cpp \

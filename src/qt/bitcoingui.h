@@ -13,7 +13,6 @@ class ClientModel;
 class WalletModel;
 class WalletStack;
 class TransactionView;
-class MintingView;
 class OverviewPage;
 class AddressBookPage;
 class SendCoinsDialog;
@@ -66,7 +65,6 @@ public:
     // Todo: Use Qt signals for these
     QAction * getOverviewAction() { return overviewAction; }
     QAction * getHistoryAction() { return historyAction; }
-    QAction * getMintingAction() { return mintingAction; }
     QAction * getMultisigAction() { return multisigAction; }
     QAction * getAddressBookAction() { return addressBookAction; }
     QAction * getReceiveCoinsAction() { return receiveCoinsAction; }
@@ -92,7 +90,6 @@ private:
     QMenuBar *appMenuBar;
     QAction *overviewAction;
     QAction *historyAction;
-    QAction *mintingAction;
     QAction *multisigAction;
     QAction *quitAction;
     QAction *sendCoinsAction;
@@ -115,7 +112,6 @@ private:
     QSystemTrayIcon *trayIcon;
     Notificator *notificator;
     TransactionView *transactionView;
-    MintingView *mintingView;
     RPCConsole *rpcConsole;
 
     QMovie *syncIconMovie;
@@ -177,8 +173,6 @@ private slots:
     void gotoHistoryPage();
     /** Switch to multisig page */
     void gotoMultisigPage();
-    /** Switch to minting page */
-    void gotoMintingPage();
     /** Switch to address book page */
     void gotoAddressBookPage();
     /** Switch to receive coins page */

@@ -85,11 +85,6 @@ void WalletFrame::gotoMultisigPage()
     walletStack->gotoMultisigPage();
 }
 
-void WalletFrame::gotoMintingPage()
-{
-    walletStack->gotoMintingPage();
-}
-
 void WalletFrame::gotoAddressBookPage()
 {
     walletStack->gotoAddressBookPage();

@@ -42,8 +42,6 @@ public slots:
     void gotoOverviewPage();
     /** Switch to multisig page */
     void gotoMultisigPage();
-    /** Switch to minting page */
-    void gotoMintingPage();
     /** Switch to history (transactions) page */
     void gotoHistoryPage();
     /** Switch to address book page */

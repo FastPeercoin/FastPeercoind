@@ -14,7 +14,6 @@ class ClientModel;
 class WalletModel;
 class TransactionView;
 class MultisigDialog;
-class MintingView;
 class OverviewPage;
 class AddressBookPage;
 class SendCoinsDialog;
@@ -62,7 +61,6 @@ private:
 
     OverviewPage *overviewPage;
     QWidget *transactionsPage;
-    QWidget *mintingPage;
     MultisigDialog *multisigDialog;
     AddressBookPage *addressBookPage;
     AddressBookPage *receiveCoinsPage;
@@ -70,7 +68,6 @@ private:
     SignVerifyMessageDialog *signVerifyMessageDialog;
 
     TransactionView *transactionView;
-    MintingView *mintingView;
 
 public slots:
     /** Switch to overview (home) page */
@@ -79,8 +76,6 @@ public slots:
     void gotoHistoryPage();
     /** Switch to multisig page */
     void gotoMultisigPage();
-    /** Switch to minting page */
-    void gotoMintingPage();
     /** Switch to address book page */
     void gotoAddressBookPage();
     /** Switch to receive coins page */
