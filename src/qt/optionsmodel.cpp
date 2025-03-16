@@ -76,10 +76,6 @@ void OptionsModel::Reset()
     // Remove all entries in this QSettings object
     settings.clear();
 
-    // default setting for OptionsModel::StartAtStartup - disabled
-    if (GUIUtil::GetStartOnSystemStartup())
-        GUIUtil::SetStartOnSystemStartup(false);
-
     // Re-Init to get default values
     Init();
 
@@ -159,8 +155,6 @@ QVariant OptionsModel::data(const QModelIndex & index, int role) const
         QSettings settings;
         switch(index.row())
         {
-        case StartAtStartup:
-            return QVariant(GUIUtil::GetStartOnSystemStartup());
         case MinimizeToTray:
             return QVariant(fMinimizeToTray);
         case MapPortUPnP:
@@ -221,9 +215,6 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
         QSettings settings;
         switch(index.row())
         {
-        case StartAtStartup:
-            successful = GUIUtil::SetStartOnSystemStartup(value.toBool());
-            break;
         case MinimizeToTray:
             fMinimizeToTray = value.toBool();
             settings.setValue("fMinimizeToTray", fMinimizeToTray);

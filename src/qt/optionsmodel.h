@@ -17,7 +17,6 @@ public:
     explicit OptionsModel(QObject *parent = 0);
 
     enum OptionID {
-        StartAtStartup,    // bool
         MinimizeToTray,    // bool
         MapPortUPnP,       // bool
         MinimizeOnClose,   // bool

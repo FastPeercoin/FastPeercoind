@@ -122,7 +122,6 @@ void OptionsDialog::setModel(OptionsModel *model)
 void OptionsDialog::setMapper()
 {
     /* Main */
-    mapper->addMapping(ui->bitcoinAtStartup, OptionsModel::StartAtStartup);
     mapper->addMapping(ui->checkpointEnforce, OptionsModel::CheckpointEnforce);
 
     /* Network */
