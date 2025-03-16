@@ -66,7 +66,6 @@ enum txnouttype
     TX_PUBKEY,
     TX_PUBKEYHASH,
     TX_SCRIPTHASH,
-    TX_MULTISIG,
     TX_NULL_DATA,
 };
 
@@ -206,8 +205,6 @@ enum opcodetype
     OP_CODESEPARATOR = 0xab,
     OP_CHECKSIG = 0xac,
     OP_CHECKSIGVERIFY = 0xad,
-    OP_CHECKMULTISIG = 0xae,
-    OP_CHECKMULTISIGVERIFY = 0xaf,
 
     // expansion
     OP_NOP1 = 0xb0,
@@ -543,11 +540,6 @@ public:
         return nFound;
     }
 
-    // Pre-version-0.6, Bitcoin always counted CHECKMULTISIGs
-    // as 20 sigops. With pay-to-script-hash, that changed:
-    // CHECKMULTISIGs serialized in scriptSigs are
-    // counted more accurately, assuming they are of the form
-    //  ... OP_N CHECKMULTISIG ...
     unsigned int GetSigOpCount(bool fAccurate) const;
 
     // Accurately count sigOps, including sigOps in
@@ -573,7 +565,6 @@ public:
 
 
     void SetDestination(const CTxDestination& address);
-    void SetMultisig(int nRequired, const std::vector<CKey>& keys);
 
 
     void PrintHex() const

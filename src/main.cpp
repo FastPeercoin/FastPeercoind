@@ -417,9 +417,6 @@ bool CTransaction::IsStandard(string& strReason) const
 
     BOOST_FOREACH(const CTxIn& txin, vin)
     {
-        // Biggest 'standard' txin is a 3-signature 3-of-3 CHECKMULTISIG
-        // pay-to-script-hash, which is 3 ~80-byte signatures, 3
-        // ~65-byte public keys, plus a few script ops.
         if (txin.scriptSig.size() > 500) {
             strReason = "scriptsig-size";
             return false;
@@ -2771,8 +2768,9 @@ bool CBlock::CheckBlockSignature() const
     txnouttype whichType;
     const CTxOut& txout = IsProofOfStake()? vtx[1].vout[1] : vtx[0].vout[0];
 
-    if (!Solver(txout.scriptPubKey, whichType, vSolutions))
+    if (!Solver(txout.scriptPubKey, whichType, vSolutions)) {
         return false;
+    }
     if (whichType == TX_PUBKEY)
     {
         const valtype& vchPubKey = vSolutions[0];
@@ -2783,6 +2781,7 @@ bool CBlock::CheckBlockSignature() const
             return false;
         return key.Verify(GetHash(), vchBlockSig);
     }
+
     return false;
 }
 

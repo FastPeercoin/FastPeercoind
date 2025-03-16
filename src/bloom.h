@@ -22,7 +22,7 @@ enum bloomflags
 {
     BLOOM_UPDATE_NONE = 0,
     BLOOM_UPDATE_ALL = 1,
-    // Only adds outpoints to the filter if the output is a pay-to-pubkey/pay-to-multisig script
+    // Only adds outpoints to the filter if the output is a pay-to-pubkey script
     BLOOM_UPDATE_P2PUBKEY_ONLY = 2,
     BLOOM_UPDATE_MASK = 3,
 };

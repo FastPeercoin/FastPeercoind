@@ -80,11 +80,6 @@ void WalletFrame::gotoHistoryPage()
     walletStack->gotoHistoryPage();
 }
 
-void WalletFrame::gotoMultisigPage()
-{
-    walletStack->gotoMultisigPage();
-}
-
 void WalletFrame::gotoAddressBookPage()
 {
     walletStack->gotoAddressBookPage();

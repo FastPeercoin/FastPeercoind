@@ -205,13 +205,6 @@ void BitcoinGUI::createActions()
     addressBookAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
     tabGroup->addAction(addressBookAction);
 
-    multisigAction = new QAction(QIcon(":/icons/multisig"), tr("&Multisig"), this);
-    multisigAction->setStatusTip(tr("UI to create multisig addresses"));
-    multisigAction->setToolTip(multisigAction->statusTip());
-    multisigAction->setCheckable(true);
-    multisigAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_7));
-    tabGroup->addAction(multisigAction);
-
     connect(overviewAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(overviewAction, SIGNAL(triggered()), this, SLOT(gotoOverviewPage()));
     connect(sendCoinsAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
@@ -222,8 +215,6 @@ void BitcoinGUI::createActions()
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
     connect(addressBookAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(addressBookAction, SIGNAL(triggered()), this, SLOT(gotoAddressBookPage()));
-    connect(multisigAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
-    connect(multisigAction, SIGNAL(triggered()), this, SLOT(gotoMultisigPage()));
 
     quitAction = new QAction(QIcon(":/icons/quit"), tr("E&xit"), this);
     quitAction->setStatusTip(tr("Quit application"));
@@ -295,7 +286,6 @@ void BitcoinGUI::createMenuBar()
     file->addAction(backupWalletAction);
     file->addAction(signMessageAction);
     file->addAction(verifyMessageAction);
-    file->addAction(multisigAction);
     file->addSeparator();
     file->addAction(quitAction);
 
@@ -329,7 +319,6 @@ void BitcoinGUI::createToolBars()
     toolbar->addAction(receiveCoinsAction);
     toolbar->addAction(historyAction);
     toolbar->addAction(addressBookAction);
-    toolbar->addAction(multisigAction);
 }
 
 void BitcoinGUI::setClientModel(ClientModel *clientModel)
@@ -435,7 +424,6 @@ void BitcoinGUI::createTrayIconMenu()
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(signMessageAction);
     trayIconMenu->addAction(verifyMessageAction);
-    trayIconMenu->addAction(multisigAction);
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(optionsAction);
     trayIconMenu->addAction(openRPCConsoleAction);
@@ -502,11 +490,6 @@ void BitcoinGUI::gotoOverviewPage()
 void BitcoinGUI::gotoHistoryPage()
 {
     if (walletFrame) walletFrame->gotoHistoryPage();
-}
-
-void BitcoinGUI::gotoMultisigPage()
-{
-    if (walletFrame) walletFrame->gotoMultisigPage();
 }
 
 void BitcoinGUI::gotoAddressBookPage()

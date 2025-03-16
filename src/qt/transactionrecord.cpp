@@ -76,7 +76,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                     }
                     else
                     {
-                        // Received by IP connection (deprecated features), or a multisignature or other non-simple transaction
+                        // Received by IP connection (deprecated features), or other non-simple transaction
                         sub.type = TransactionRecord::RecvFromOther;
                         sub.address = mapValue["from"];
                     }

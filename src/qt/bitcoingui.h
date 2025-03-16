@@ -65,7 +65,6 @@ public:
     // Todo: Use Qt signals for these
     QAction * getOverviewAction() { return overviewAction; }
     QAction * getHistoryAction() { return historyAction; }
-    QAction * getMultisigAction() { return multisigAction; }
     QAction * getAddressBookAction() { return addressBookAction; }
     QAction * getReceiveCoinsAction() { return receiveCoinsAction; }
     QAction * getSendCoinsAction() { return sendCoinsAction; }
@@ -90,7 +89,6 @@ private:
     QMenuBar *appMenuBar;
     QAction *overviewAction;
     QAction *historyAction;
-    QAction *multisigAction;
     QAction *quitAction;
     QAction *sendCoinsAction;
     QAction *addressBookAction;
@@ -171,8 +169,6 @@ private slots:
     void gotoOverviewPage();
     /** Switch to history (transactions) page */
     void gotoHistoryPage();
-    /** Switch to multisig page */
-    void gotoMultisigPage();
     /** Switch to address book page */
     void gotoAddressBookPage();
     /** Switch to receive coins page */

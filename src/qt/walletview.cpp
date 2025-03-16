@@ -10,7 +10,6 @@
 #include "addressbookpage.h"
 #include "sendcoinsdialog.h"
 #include "signverifymessagedialog.h"
-#include "multisigdialog.h"
 #include "clientmodel.h"
 #include "walletmodel.h"
 #include "optionsmodel.h"
@@ -48,14 +47,12 @@ WalletView::WalletView(QWidget *parent, BitcoinGUI *_gui):
 
     receiveCoinsPage = new AddressBookPage(AddressBookPage::ForEditing, AddressBookPage::ReceivingTab);
 
-    multisigDialog = new MultisigDialog(gui);
     sendCoinsPage = new SendCoinsDialog(gui);
 
     signVerifyMessageDialog = new SignVerifyMessageDialog(gui);
 
     addWidget(overviewPage);
     addWidget(transactionsPage);
-    addWidget(multisigDialog);
     addWidget(addressBookPage);
     addWidget(receiveCoinsPage);
     addWidget(sendCoinsPage);
@@ -107,7 +104,6 @@ void WalletView::setWalletModel(WalletModel *walletModel)
 
         // Put transaction list in tabs
         transactionView->setModel(walletModel);
-        multisigDialog->setModel(walletModel);
         overviewPage->setWalletModel(walletModel);
         addressBookPage->setModel(walletModel->getAddressTableModel());
         receiveCoinsPage->setModel(walletModel->getAddressTableModel());
@@ -152,12 +148,6 @@ void WalletView::gotoHistoryPage()
 {
     gui->getHistoryAction()->setChecked(true);
     setCurrentWidget(transactionsPage);
-}
-
-void WalletView::gotoMultisigPage()
-{
-    gui->getMultisigAction()->setChecked(true);
-    setCurrentWidget(multisigDialog);
 }
 
 void WalletView::gotoAddressBookPage()
