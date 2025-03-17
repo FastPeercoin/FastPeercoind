@@ -14,8 +14,37 @@ CPU mining still readily available (while supplies last).
 
 1. Use VirtualBox and Ubuntu 14.04 (Trusty Tahr)
 2. Git clone the repository
+
+```
+git clone https://github.com/FastPeercoin/FastPeercoin
+```
+
 3. Checkout the FastPeercoin branch
+
+```
+cd FastPeercoin
+git checkout FastPeercoin
+```
+
 4. Install dependencies
+
+```
+sudo apt update
+sudo apt install build-essential libboost-all-dev libssl-dev libdb++-dev
+```
+
 5. Compile
-6. ./src/qt/peercoin-qt -gen 1
+
+```
+./autogen.sh
+./configure --with-incompatible-bdb
+make
+```
+
+6. Mine
+
+```
+./src/qt/peercoin-qt -gen 1
+```
+
 7. Profit!?!
