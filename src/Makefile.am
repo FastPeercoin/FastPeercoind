@@ -56,8 +56,6 @@ BITCOIN_CORE_H = \
   rpcprotocol.h \
   rpcserver.h \
   bloom.h \
-  checkpoints.h \
-  checkpointsync.h \
   checkqueue.h \
   clientversion.h \
   compat.h \
@@ -109,8 +107,6 @@ libpeercoin_server_a_SOURCES = \
   alert.cpp \
   rpcserver.cpp \
   bloom.cpp \
-  checkpoints.cpp \
-  checkpointsync.cpp \
   crypter.cpp \
   init.cpp \
   kernel.cpp \

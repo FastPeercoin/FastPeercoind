@@ -28,12 +28,10 @@ public:
         DisplayAddresses,  // bool
         Language,          // QString
         CoinControlFeatures, // bool
-        CheckpointEnforce, // bool
         OptionIDRowCount,
     };
 
     void Init();
-    void Reset();
 
     /* Migrate settings from wallet.dat after app initialization */
     bool Upgrade(); /* returns true if settings upgraded */
@@ -51,8 +49,6 @@ public:
 
     bool getCoinControlFeatures() { return fCoinControlFeatures; }
 
-    bool getCheckpointEnforce() { return fCheckpointEnforce; }
-
 private:
     int nDisplayUnit;
     bool bDisplayAddresses;
@@ -62,8 +58,6 @@ private:
     bool fCoinControlFeatures;
 
     QString language;
-
-    bool fCheckpointEnforce;
 
 signals:
     void displayUnitChanged(int unit);

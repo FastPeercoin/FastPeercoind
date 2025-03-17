@@ -14,7 +14,6 @@
 #include "walletdb.h"
 #include "init.h"
 #include "base58.h"
-#include "checkpointsync.h"
 #include "kernel.h"
 
 #include <boost/assign/list_of.hpp>
@@ -97,7 +96,6 @@ Value getinfo(const Array& params, bool fHelp)
     obj.push_back(Pair("keypoololdest", (boost::int64_t)pwalletMain->GetOldestKeyPoolTime()));
     obj.push_back(Pair("keypoolsize",   pwalletMain->GetKeyPoolSize()));
     obj.push_back(Pair("paytxfee",      ValueFromAmount(nTransactionFee)));
-    obj.push_back(Pair("checkpoints",   IsSyncCheckpointEnforced()));
     if (pwalletMain->IsCrypted())
         obj.push_back(Pair("unlocked_until", (boost::int64_t)nWalletUnlockTime));
     obj.push_back(Pair("errors",        GetWarnings("statusbar")));

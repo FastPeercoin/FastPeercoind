@@ -8,7 +8,6 @@
 
 #include "base58.h"
 #include "init.h"
-#include "checkpoints.h"
 #include "util.h"
 #include "sync.h"
 #include "ui_interface.h"
@@ -473,9 +472,6 @@ static const CRPCCommand vRPCCommands[] =
     { "listsinceblock",         &listsinceblock,         false,     false },
     { "dumpprivkey",            &dumpprivkey,            true,      false },
     { "importprivkey",          &importprivkey,          false,     false },
-    { "getcheckpoint",          &getcheckpoint,          true,      false },
-    { "sendcheckpoint",         &sendcheckpoint,         true,      false },
-    { "enforcecheckpoint",      &enforcecheckpoint,      true,      false },
     { "reservebalance",         &reservebalance,         false,     false },
     { "checkwallet",            &checkwallet,            false,     false },
     { "repairwallet",           &repairwallet,           false,     false },

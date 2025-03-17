@@ -47,7 +47,4 @@ bool CheckCoinStakeTimestamp(int64 nTimeBlock, int64 nTimeTx);
 // Get stake modifier checksum
 unsigned int GetStakeModifierChecksum(const CBlockIndex* pindex);
 
-// Check stake modifier hard checkpoints
-bool CheckStakeModifierCheckpoints(int nHeight, unsigned int nStakeModifierChecksum);
-
 #endif // PPCOIN_KERNEL_H

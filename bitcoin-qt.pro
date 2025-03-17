@@ -160,7 +160,6 @@ HEADERS += src/qt/bitcoingui.h \
     src/addrman.h \
     src/base58.h \
     src/bignum.h \
-    src/checkpoints.h \
     src/coincontrol.h \
     src/compat.h \
     src/sync.h \
@@ -221,7 +220,6 @@ HEADERS += src/qt/bitcoingui.h \
     src/allocators.h \
     src/ui_interface.h \
     src/kernel.h \
-    src/checkpointsync.h \
     src/qt/rpcconsole.h \
     src/version.h \
     src/netbase.h \
@@ -261,7 +259,6 @@ SOURCES += src/qt/bitcoin.cpp \
     src/init.cpp \
     src/net.cpp \
     src/bloom.cpp \
-    src/checkpoints.cpp \
     src/addrman.cpp \
     src/db.cpp \
     src/walletdb.cpp \
@@ -303,7 +300,6 @@ SOURCES += src/qt/bitcoin.cpp \
     src/protocol.cpp \
     src/qt/notificator.cpp \
     src/kernel.cpp \
-    src/checkpointsync.cpp \
     src/qt/paymentserver.cpp \
     src/qt/rpcconsole.cpp \
     src/noui.cpp \

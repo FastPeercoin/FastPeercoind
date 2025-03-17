@@ -6,7 +6,6 @@
 
 #include "db.h"
 #include "net.h"
-#include "checkpoints.h"
 #include "util.h"
 #include "main.h"
 #include "kernel.h"

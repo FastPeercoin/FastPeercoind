@@ -8,7 +8,6 @@
 #include "init.h"
 #include "walletdb.h"
 #include "guiutil.h"
-#include "checkpointsync.h"
 
 #include <QSettings>
 
@@ -53,7 +52,6 @@ void OptionsModel::Init()
     fMinimizeOnClose = settings.value("fMinimizeOnClose", false).toBool();
     fCoinControlFeatures = settings.value("fCoinControlFeatures", false).toBool();
     language = settings.value("language", "").toString();
-    fCheckpointEnforce = settings.value("fCheckpointEnforce", true).toBool();
 
     // These are shared with core Bitcoin; we want
     // command-line options to override the GUI settings:
@@ -65,22 +63,6 @@ void OptionsModel::Init()
         SoftSetArg("-socks", settings.value("nSocksVersion").toString().toStdString());
     if (!language.isEmpty())
         SoftSetArg("-lang", language.toStdString());
-    if (settings.contains("fCheckpointEnforce"))
-        SoftSetBoolArg("-enforcecheckpoint", settings.value("fCheckpointEnforce").toBool());
-}
-
-void OptionsModel::Reset()
-{
-    QSettings settings;
-
-    // Remove all entries in this QSettings object
-    settings.clear();
-
-    // Re-Init to get default values
-    Init();
-
-    // Ensure Upgrade() is not running again by setting the bImportFinished flag
-    settings.setValue("bImportFinished", true);
 }
 
 bool OptionsModel::Upgrade()
@@ -198,8 +180,6 @@ QVariant OptionsModel::data(const QModelIndex & index, int role) const
             return QVariant(fCoinControlFeatures);
         case Language:
             return settings.value("language", "");
-        case CheckpointEnforce:
-            return IsSyncCheckpointEnforced();
         default:
             return QVariant();
         }
@@ -278,11 +258,6 @@ bool OptionsModel::setData(const QModelIndex & index, const QVariant & value, in
             fCoinControlFeatures = value.toBool();
             settings.setValue("fCoinControlFeatures", fCoinControlFeatures);
             emit coinControlFeaturesChanged(fCoinControlFeatures);
-            break;
-        case CheckpointEnforce:
-            fCheckpointEnforce = value.toBool();
-            settings.setValue("fCheckpointEnforce", fCheckpointEnforce);
-            SetCheckpointEnforce(fCheckpointEnforce);
             break;
         default:
             break;
