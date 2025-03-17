@@ -13,24 +13,31 @@ CPU mining still readily available (while supplies last).
 ### Building and running
 
 1. Use VirtualBox and Ubuntu 14.04 (Trusty Tahr)
-2. Git clone the repository
+
+https://www.virtualbox.org
+
+https://releases.ubuntu.com/14.04/ubuntu-14.04.6-desktop-amd64.iso
+
+2. Install dependencies
+
+```
+sudo apt update
+sudo apt install git build-essential
+sudo apt install libboost-all-dev libssl-dev libdb++-dev
+sudo apt install qtbase5-dev qttools5-dev qttools5-dev-tools 
+```
+
+3. Git clone the repository
 
 ```
 git clone https://github.com/FastPeercoin/FastPeercoin
 ```
 
-3. Checkout the FastPeercoin branch
+4. Checkout the FastPeercoin branch
 
 ```
 cd FastPeercoin
 git checkout FastPeercoin
-```
-
-4. Install dependencies
-
-```
-sudo apt update
-sudo apt install build-essential libboost-all-dev libssl-dev libdb++-dev
 ```
 
 5. Compile
