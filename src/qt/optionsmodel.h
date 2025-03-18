@@ -24,7 +24,6 @@ public:
         ProxyPort,         // int
         ProxySocksVersion, // int
         DisplayUnit,       // BitcoinUnits::Unit
-        DisplayAddresses,  // bool
         Language,          // QString
         CoinControlFeatures, // bool
         OptionIDRowCount,
@@ -43,14 +42,12 @@ public:
     bool getMinimizeToTray() { return fMinimizeToTray; }
     bool getMinimizeOnClose() { return fMinimizeOnClose; }
     int getDisplayUnit() { return nDisplayUnit; }
-    bool getDisplayAddresses() { return bDisplayAddresses; }
     QString getLanguage() { return language; }
 
     bool getCoinControlFeatures() { return fCoinControlFeatures; }
 
 private:
     int nDisplayUnit;
-    bool bDisplayAddresses;
     bool fMinimizeToTray;
     bool fMinimizeOnClose;
 

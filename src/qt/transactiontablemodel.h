@@ -65,12 +65,12 @@ private:
     TransactionTablePriv *priv;
     int cachedNumBlocks;
 
-    QString lookupAddress(const std::string &address, bool tooltip) const;
+    QString lookupAddress(const std::string &address) const;
     QVariant addressColor(const TransactionRecord *wtx) const;
     QString formatTxStatus(const TransactionRecord *wtx) const;
     QString formatTxDate(const TransactionRecord *wtx) const;
     QString formatTxType(const TransactionRecord *wtx) const;
-    QString formatTxToAddress(const TransactionRecord *wtx, bool tooltip) const;
+    QString formatTxToAddress(const TransactionRecord *wtx) const;
     QString formatTxAmount(const TransactionRecord *wtx, bool showUnconfirmed=true) const;
     QString formatTooltip(const TransactionRecord *rec) const;
     QVariant txStatusDecoration(const TransactionRecord *wtx) const;

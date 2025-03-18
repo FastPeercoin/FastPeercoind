@@ -336,7 +336,7 @@ QString TransactionTableModel::formatTxDate(const TransactionRecord *wtx) const
 /* Look up address in address book, if found return label (address)
    otherwise just return (address)
  */
-QString TransactionTableModel::lookupAddress(const std::string &address, bool tooltip) const
+QString TransactionTableModel::lookupAddress(const std::string &address) const
 {
     QString label = walletModel->getAddressTableModel()->labelForAddress(QString::fromStdString(address));
     QString description;
@@ -344,10 +344,7 @@ QString TransactionTableModel::lookupAddress(const std::string &address, bool to
     {
         description += label + QString(" ");
     }
-    if(label.isEmpty() || walletModel->getOptionsModel()->getDisplayAddresses() || tooltip)
-    {
-        description += QString("(") + QString::fromStdString(address) + QString(")");
-    }
+    description += QString("(") + QString::fromStdString(address) + QString(")");
     return description;
 }
 
@@ -391,7 +388,7 @@ QVariant TransactionTableModel::txAddressDecoration(const TransactionRecord *wtx
     return QVariant();
 }
 
-QString TransactionTableModel::formatTxToAddress(const TransactionRecord *wtx, bool tooltip) const
+QString TransactionTableModel::formatTxToAddress(const TransactionRecord *wtx) const
 {
     switch(wtx->type)
     {
@@ -401,7 +398,7 @@ QString TransactionTableModel::formatTxToAddress(const TransactionRecord *wtx, b
     case TransactionRecord::SendToAddress:
     case TransactionRecord::Generated:
     case TransactionRecord::StakeMint:
-        return lookupAddress(wtx->address, tooltip);
+        return lookupAddress(wtx->address);
     case TransactionRecord::SendToOther:
         return QString::fromStdString(wtx->address);
     case TransactionRecord::SendToSelf:
@@ -496,7 +493,7 @@ QString TransactionTableModel::formatTooltip(const TransactionRecord *rec) const
     if(rec->type==TransactionRecord::RecvFromOther || rec->type==TransactionRecord::SendToOther ||
        rec->type==TransactionRecord::SendToAddress || rec->type==TransactionRecord::RecvWithAddress)
     {
-        tooltip += QString(" ") + formatTxToAddress(rec, true);
+        tooltip += QString(" ") + formatTxToAddress(rec);
     }
     return tooltip;
 }
@@ -526,7 +523,7 @@ QVariant TransactionTableModel::data(const QModelIndex &index, int role) const
         case Type:
             return formatTxType(rec);
         case ToAddress:
-            return formatTxToAddress(rec, false);
+            return formatTxToAddress(rec);
         case Amount:
             return formatTxAmount(rec);
         }
@@ -542,7 +539,7 @@ QVariant TransactionTableModel::data(const QModelIndex &index, int role) const
         case Type:
             return formatTxType(rec);
         case ToAddress:
-            return formatTxToAddress(rec, true);
+            return formatTxToAddress(rec);
         case Amount:
             return rec->credit + rec->debit;
         }
