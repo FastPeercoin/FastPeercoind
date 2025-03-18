@@ -115,11 +115,6 @@ void WalletFrame::decryptForMinting(bool status)
     walletStack->decryptForMinting(status);
 }
 
-void WalletFrame::backupWallet()
-{
-    walletStack->backupWallet();
-}
-
 void WalletFrame::changePassphrase()
 {
     walletStack->changePassphrase();

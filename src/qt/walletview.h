@@ -93,8 +93,6 @@ public slots:
     void encryptWallet(bool status);
     /** Decrypt wallet for minting only */
     void decryptForMinting(bool status);
-    /** Backup the wallet */
-    void backupWallet();
     /** Change encrypted wallet passphrase */
     void changePassphrase();
     /** Ask for passphrase to unlock wallet temporarily */

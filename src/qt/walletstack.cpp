@@ -135,12 +135,6 @@ void WalletStack::decryptForMinting(bool status)
     if (walletView) walletView->decryptForMinting(status);
 }
 
-void WalletStack::backupWallet()
-{
-    WalletView *walletView = (WalletView*)currentWidget();
-    if (walletView) walletView->backupWallet();
-}
-
 void WalletStack::changePassphrase()
 {
     WalletView *walletView = (WalletView*)currentWidget();

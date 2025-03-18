@@ -254,24 +254,6 @@ void WalletView::decryptForMinting(bool status)
         fWalletUnlockMintOnly = false;
     }
 }
-void WalletView::backupWallet()
-{
-#if QT_VERSION < 0x050000
-    QString saveDir = QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation);
-#else
-    QString saveDir = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/data/organization/application";
-#endif
-    QString filename = QFileDialog::getSaveFileName(this, tr("Backup Wallet"), saveDir, tr("Wallet Data (*.dat)"));
-    if (!filename.isEmpty()) {
-        if (!walletModel->backupWallet(filename)) {
-            gui->message(tr("Backup Failed"), tr("There was an error trying to save the wallet data to the new location."),
-                      CClientUIInterface::MSG_ERROR);
-        }
-        else
-            gui->message(tr("Backup Successful"), tr("The wallet data was successfully saved to the new location."),
-                      CClientUIInterface::MSG_INFORMATION);
-    }
-}
 
 void WalletView::changePassphrase()
 {

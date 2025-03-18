@@ -1163,22 +1163,6 @@ Value gettransaction(const Array& params, bool fHelp)
     return entry;
 }
 
-
-Value backupwallet(const Array& params, bool fHelp)
-{
-    if (fHelp || params.size() != 1)
-        throw runtime_error(
-            "backupwallet <destination>\n"
-            "Safely copies wallet.dat to destination, which can be a directory or a path with filename.");
-
-    string strDest = params[0].get_str();
-    if (!BackupWallet(*pwalletMain, strDest))
-        throw JSONRPCError(RPC_WALLET_ERROR, "Error: Wallet backup failed!");
-
-    return Value::null;
-}
-
-
 Value keypoolrefill(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() > 0)
