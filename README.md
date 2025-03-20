@@ -1,57 +1,45 @@
-FastPeercoin
-============
+FastPeercoind
+=============
 
-### What is FastPeercoin?
-It's Peercoin, but block times are sped way up.
+### What is FastPeercoind?
 
-FastPeercoin aims to simplify the code as much as possible.
+This repo provides the fastpeercoind and fastpeercoin-cli executables for use in server environments.
 
-It's new and shiny and you can get in on the ground floor!
-
-CPU mining still readily available (while supplies last).
+A Docker based approach to building and running the fastpeercoind is provided.
 
 ### Building and running
 
-1. Use VirtualBox and Ubuntu 14.04 (Trusty Tahr)
+1. Docker
+    - ```
+    docker build -t fastpeercoin-ubuntu14 .
+    ```
+    - ```
+    docker run -it --name fastpeercoin_build -v ~/fastpeercoin:/root/fastpeercoin fastpeercoin-ubuntu14 bash
+    ```
 
-https://www.virtualbox.org
+    Once in the container you must now build the fastpeercoin
+    
+    ```
+    cd /root
+    git clone https://github.com/FastPeercoin/FastPeercoin.git fastpeercoin
+    cd fastpeercoin
+    git checkout FastPeercoin
+    ```
 
-https://releases.ubuntu.com/14.04/ubuntu-14.04.6-desktop-amd64.iso
+    Once cloned you can finally build
+    ```
+    ./autogen.sh
+    ./configure --with-incompatible-bdb
+    make -j$(nproc)
+    ```
 
-2. Install dependencies
+    Once built, you can run it
+    ```
+    cd /root/fastpeercoin/src
+    ./peercoind -daemon
+    ```
 
-```
-sudo apt update
-sudo apt install git build-essential autoconf pkg-config libtool
-sudo apt install libboost-all-dev libssl-dev libdb++-dev
-sudo apt install qtbase5-dev qttools5-dev qttools5-dev-tools 
-```
-
-3. Git clone the repository
-
-```
-git clone https://github.com/FastPeercoin/FastPeercoin
-```
-
-4. Checkout the FastPeercoin branch
-
-```
-cd FastPeercoin
-git checkout FastPeercoin
-```
-
-5. Compile
-
-```
-./autogen.sh
-./configure --with-incompatible-bdb
-make
-```
-
-6. Mine
-
-```
-./src/qt/peercoin-qt -gen 1
-```
-
-7. Profit!?!
+    Verify Status
+    ```
+    ./peercoin-cli getinfo
+    ```
