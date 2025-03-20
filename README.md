@@ -10,10 +10,10 @@ A Docker based approach to building and running the fastpeercoind is provided.
 ### Building and running
 
 1. Docker
-    - ```
+    ```
     docker build -t fastpeercoin-ubuntu14 .
     ```
-    - ```
+    ```
     docker run -it --name fastpeercoin_build -v ~/fastpeercoin:/root/fastpeercoin fastpeercoin-ubuntu14 bash
     ```
 
