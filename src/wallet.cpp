@@ -1185,20 +1185,11 @@ bool CWallet::SelectCoins(int64 nTargetValue, unsigned int nSpendTime, set<pair<
 
 
 
-bool CWallet::CreateTransaction(const vector<pair<CScript, int64> >& vecSend,
+bool CWallet::CreateTransaction(const pair<CScript, int64> send,
                                 CWalletTx& wtxNew, CReserveKey& reservekey, int64& nFeeRet, std::string& strFailReason)
 {
-    int64 nValue = 0;
-    BOOST_FOREACH (const PAIRTYPE(CScript, int64)& s, vecSend)
-    {
-        if (nValue < 0)
-        {
-            strFailReason = _("Transaction amounts must be positive");
-            return false;
-        }
-        nValue += s.second;
-    }
-    if (vecSend.empty() || nValue < 0)
+    int64 nValue = send.second;
+    if (nValue < 0)
     {
         strFailReason = _("Transaction amounts must be positive");
         return false;
@@ -1219,17 +1210,14 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, int64> >& vecSend,
 
                 int64 nTotalValue = nValue + nFeeRet;
                 double dPriority = 0;
-                // vouts to the payees
-                BOOST_FOREACH (const PAIRTYPE(CScript, int64)& s, vecSend)
+                // vout to the payees
+                CTxOut txout(send.second, send.first);
+                if (txout.IsDust())
                 {
-                    CTxOut txout(s.second, s.first);
-                    if (txout.IsDust())
-                    {
-                        strFailReason = _("Transaction amount too small");
-                        return false;
-                    }
-                    wtxNew.vout.push_back(txout);
+                    strFailReason = _("Transaction amount too small");
+                    return false;
                 }
+                wtxNew.vout.push_back(txout);
 
                 // Choose coins to use
                 set<pair<const CWalletTx*,unsigned int> > setCoins;
@@ -1359,9 +1347,7 @@ bool CWallet::CreateTransaction(const vector<pair<CScript, int64> >& vecSend,
 bool CWallet::CreateTransaction(CScript scriptPubKey, int64 nValue,
                                 CWalletTx& wtxNew, CReserveKey& reservekey, int64& nFeeRet, std::string& strFailReason)
 {
-    vector< pair<CScript, int64> > vecSend;
-    vecSend.push_back(make_pair(scriptPubKey, nValue));
-    return CreateTransaction(vecSend, wtxNew, reservekey, nFeeRet, strFailReason);
+    return CreateTransaction(make_pair(scriptPubKey, nValue), wtxNew, reservekey, nFeeRet, strFailReason);
 }
 
 // ppcoin: create coin stake transaction

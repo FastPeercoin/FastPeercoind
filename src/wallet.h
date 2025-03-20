@@ -184,7 +184,7 @@ public:
     int64 GetImmatureBalance() const;
     int64 GetStake() const;
     bool CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int64 nSearchInterval, CTransaction& txNew);
-    bool CreateTransaction(const std::vector<std::pair<CScript, int64> >& vecSend,
+    bool CreateTransaction(const std::pair<CScript, int64> send,
                            CWalletTx& wtxNew, CReserveKey& reservekey, int64& nFeeRet, std::string& strFailReason);
     bool CreateTransaction(CScript scriptPubKey, int64 nValue,
                            CWalletTx& wtxNew, CReserveKey& reservekey, int64& nFeeRet, std::string& strFailReason);
