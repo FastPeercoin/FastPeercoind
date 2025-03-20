@@ -28,5 +28,16 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /root
 
-# Keep the container running (override this later when building)
-CMD ["bash"]
+COPY . .
+
+RUN ./autogen.sh && ./configure --with-incompatible-bdb && make
+
+RUN mkdir /root/.peercoin
+RUN touch /root/.peercoin/peercoin.conf
+RUN echo "rpcuser=rpcuser" >> /root/.peercoin/peercoin.conf
+RUN echo "rpcpassword=rpcpassword" >> /root/.peercoin/peercoin.conf
+
+EXPOSE 9999
+
+# Run FastPeercoin Daemon
+CMD ["./src/peercoind", "-printtoconsole"]
