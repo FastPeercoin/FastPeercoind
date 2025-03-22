@@ -205,8 +205,3 @@ LIBPEERCOIN_SERVER=libpeercoin_server.a
 LIBPEERCOIN_WALLET=libpeercoin_wallet.a
 LIBPEERCOIN_COMMON=libpeercoin_common.a
 LIBPEERCOIN_CLI=libpeercoin_cli.a
-LIBPEERCOINQT=qt/libpeercoinqt.a
-
-if ENABLE_QT
-include Makefile.qt.include
-endif
