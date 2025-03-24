@@ -74,6 +74,22 @@ Value getpeerinfo(const Array& params, bool fHelp)
     return ret;
 }
 
+Value getnetworkinfo(const Array& params, bool fHelp)
+{
+    if (fHelp)
+    {
+        throw runtime_error("getnetworkinfo\n");
+    }
+
+    Object json;
+    json.push_back(Pair("fullversion", FormatFullVersion()));
+    json.push_back(Pair("version", CLIENT_VERSION));
+    json.push_back(Pair("subversion", FormatSubVersion(CLIENT_NAME, CLIENT_VERSION, std::vector<string>())));
+    json.push_back(Pair("protocolversion", PROTOCOL_VERSION));
+
+    return json;
+}
+
 Value addnode(const Array& params, bool fHelp)
 {
     string strCommand;
