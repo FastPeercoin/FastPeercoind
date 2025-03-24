@@ -421,10 +421,8 @@ static const CRPCCommand vRPCCommands[] =
     { "getaddednodeinfo",       &getaddednodeinfo,       true,      true },
     { "getdifficulty",          &getdifficulty,          true,      false },
     { "getgenerate",            &getgenerate,            true,      false },
-#ifndef DISABLE_MINING
     { "setgenerate",            &setgenerate,            true,      false },
     { "gethashespersec",        &gethashespersec,        true,      false },
-#endif // DISABLE_MINING
     { "getnetworkghps",         &getnetworkghps,         true,      false },
     { "getinfo",                &getinfo,                true,      false },
     { "getmininginfo",          &getmininginfo,          true,      false },
@@ -432,6 +430,7 @@ static const CRPCCommand vRPCCommands[] =
     { "getaccountaddress",      &getaccountaddress,      true,      false },
     { "setaccount",             &setaccount,             true,      false },
     { "getaccount",             &getaccount,             false,     false },
+    { "getaddressinfo",         &getaddressinfo,         false,     false },
     { "getaddressesbyaccount",  &getaddressesbyaccount,  true,      false },
     { "sendtoaddress",          &sendtoaddress,          false,     false },
     { "getreceivedbyaddress",   &getreceivedbyaddress,   false,     false },

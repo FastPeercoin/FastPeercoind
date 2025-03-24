@@ -240,6 +240,30 @@ Value getaccount(const Array& params, bool fHelp)
     return strAccount;
 }
 
+Value getaddressinfo(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() != 1)
+    {
+        throw runtime_error("getaddressinfo <peercoinaddress>\n");
+    }
+
+    CBitcoinAddress address(params[0].get_str());
+    if (!address.IsValid())
+    {
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Peercoin address");
+    }
+
+    CScript scriptPubKey;
+    scriptPubKey.SetDestination(address.Get());
+
+    Object json;
+    json.push_back(Pair("address", address.ToString()));
+    json.push_back(Pair("scriptPubKey", HexStr(scriptPubKey)));
+    json.push_back(Pair("ismine", IsMine(*pwalletMain, scriptPubKey)));
+
+    return json;
+}
+
 
 Value getaddressesbyaccount(const Array& params, bool fHelp)
 {
