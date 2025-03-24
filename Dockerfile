@@ -35,6 +35,7 @@ RUN ./autogen.sh && ./configure --with-incompatible-bdb && make
 VOLUME /root/.peercoin
 
 EXPOSE 9999
+EXPOSE 10000
 
 # Run FastPeercoin Daemon
 CMD ["./src/peercoind"]
