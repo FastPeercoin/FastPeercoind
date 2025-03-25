@@ -253,13 +253,13 @@ Value getaddressinfo(const Array& params, bool fHelp)
         throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Peercoin address");
     }
 
-    CScript scriptPubKey;
-    scriptPubKey.SetDestination(address.Get());
-
     Object json;
     json.push_back(Pair("address", address.ToString()));
-    json.push_back(Pair("scriptPubKey", HexStr(scriptPubKey)));
-    json.push_back(Pair("ismine", IsMine(*pwalletMain, scriptPubKey)));
+
+    CTxDestination dest = address.Get();
+    CPubKey vchPubKey;
+    pwalletMain->GetPubKey(boost::get<CKeyID>(dest), vchPubKey);
+    json.push_back(Pair("pubkey", HexStr(vchPubKey.Raw())));
 
     return json;
 }
