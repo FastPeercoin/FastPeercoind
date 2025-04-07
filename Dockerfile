@@ -1,5 +1,4 @@
-# Barebone Ubuntu14.04 with required packages
-FROM ubuntu:14.04
+FROM ubuntu:24.04
 
 # Set environment variables to prevent interactive prompts
 ENV DEBIAN_FRONTEND=noninteractive
@@ -32,10 +31,10 @@ COPY . .
 
 RUN ./autogen.sh && ./configure --with-incompatible-bdb && make
 
-VOLUME /root/.peercoin
+VOLUME /root/.fastpeercoin
 
 EXPOSE 9999
 EXPOSE 10000
 
 # Run FastPeercoin Daemon
-CMD ["./src/peercoind"]
+CMD ["./src/fastpeercoind"]

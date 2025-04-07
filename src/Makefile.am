@@ -37,11 +37,11 @@ bin_PROGRAMS =
 TESTS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += peercoind
+  bin_PROGRAMS += fastpeercoind
 endif
 
 if BUILD_BITCOIN_CLI
-  bin_PROGRAMS += peercoin-cli
+  bin_PROGRAMS += fastpeercoin-cli
 endif
 
 .PHONY: FORCE
@@ -154,7 +154,7 @@ nodist_libpeercoin_common_a_SOURCES = $(top_srcdir)/src/obj/build.h
 #
 
 # peercoind binary #
-peercoind_LDADD = \
+fastpeercoind_LDADD = \
   libpeercoin_server.a \
   libpeercoin_cli.a \
   libpeercoin_common.a \
@@ -162,26 +162,18 @@ peercoind_LDADD = \
   $(LIBMEMENV) \
   $(BOOST_LIBS)
 if ENABLE_WALLET
-peercoind_LDADD += libpeercoin_wallet.a
+fastpeercoind_LDADD += libpeercoin_wallet.a
 endif
-peercoind_SOURCES = bitcoind.cpp
-peercoind_LDFLAGS = $(AM_LDFLAGS)
-
-if TARGET_WINDOWS
-peercoind_SOURCES += bitcoind-res.rc
-endif
+fastpeercoind_SOURCES = bitcoind.cpp
+fastpeercoind_LDFLAGS = $(AM_LDFLAGS)
 
 AM_CPPFLAGS += $(BDB_CPPFLAGS)
-peercoind_LDADD += $(BDB_LIBS)
+fastpeercoind_LDADD += $(BDB_LIBS)
 
-# bitcoin-cli binary #
-peercoin_cli_LDADD = libpeercoin_cli.a libpeercoin_common.a $(BOOST_LIBS)
-peercoin_cli_SOURCES = bitcoin-cli.cpp
-peercoin_cli_LDFLAGS = $(AM_LDFLAGS)
-
-if TARGET_WINDOWS
-peercoin_cli_SOURCES += bitcoin-cli-res.rc
-endif
+# fastpeercoin-cli binary #
+fastpeercoin_cli_LDADD = libpeercoin_cli.a libpeercoin_common.a $(BOOST_LIBS)
+fastpeercoin_cli_SOURCES = bitcoin-cli.cpp
+fastpeercoin_cli_LDFLAGS = $(AM_LDFLAGS)
 
 CLEANFILES = leveldb/libleveldb.a leveldb/libmemenv.a *.gcda *.gcno
 

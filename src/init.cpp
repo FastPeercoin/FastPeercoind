@@ -164,7 +164,7 @@ std::string HelpMessage(HelpMessageMode hmm)
 {
     string strUsage = _("Options:") + "\n" +
         "  -?                     " + _("This help message") + "\n" +
-        "  -conf=<file>           " + _("Specify configuration file (default: peercoin.conf)") + "\n" +
+        "  -conf=<file>           " + _("Specify configuration file (default: fastpeercoin.conf)") + "\n" +
         "  -pid=<file>            " + _("Specify pid file (default: peercoind.pid)") + "\n" +
         "  -gen                   " + _("Generate coins (default: 0)") + "\n" +
         "  -nominting             " + _("Disable minting of POS blocks") + "\n" +

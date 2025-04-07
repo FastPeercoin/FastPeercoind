@@ -4,7 +4,7 @@ SUBDIRS = src
 
 GZIP_ENV="-9n"
 
-BITCOIND_BIN=$(top_builddir)/src/peercoind$(EXEEXT)
+BITCOIND_BIN=$(top_builddir)/src/fastpeercoind$(EXEEXT)
 BITCOIN_WIN_INSTALLER=$(PACKAGE)-$(PACKAGE_VERSION)-win32-setup$(EXEEXT)
 
 COVERAGE_INFO = baseline_filtered_combined.info baseline.info block_test.info \
@@ -25,7 +25,7 @@ distcleancheck:
 	@:
 
 $(BITCOIND_BIN):
-	make -C $(top_srcdir)/src peercoind$(EXEEXT)
+	make -C $(top_srcdir)/src fastpeercoind$(EXEEXT)
 
 if USE_LCOV
 
