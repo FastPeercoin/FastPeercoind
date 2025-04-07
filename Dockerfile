@@ -21,7 +21,6 @@ RUN apt-get update && apt-get install -y \
     automake \
     bsdmainutils \
     software-properties-common \
-    python \
     && apt-get clean
 
 # Set working directory
